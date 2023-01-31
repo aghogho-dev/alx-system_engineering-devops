@@ -9,7 +9,7 @@ do
 
   case $counter in
   4) echo bad luck from China;;
-  9) echo bad luck from Japna;;
+  9) echo bad luck from Japan;;
   17) echo bad luck from Italy;;
   esac
 
