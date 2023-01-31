@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Nested while loop for a clock counter
+
+mins=1
+hours=0
+
+while [ $hours -le 12 ]
+do
+  echo Hour: $hours
+
+  while [ $mins -le 59 ]
+  do
+    echo $mins
+    (( mins ++ ))
+
+    if [ $mins -eq 60 ]
+    then
+      (( hours++ ))
+    fi
+  done
+
+  mins=1
+
+done
