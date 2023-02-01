@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Story of passwd
+
+while IFS=':' read username password uid gid info home shell
+do
+  echo "The user $username is part of the $gid gang, lives in $home and rides $shell. $uid's place is protected by passcode $password, more info abot the user here: $info"
+done < "/etc/passwd"
