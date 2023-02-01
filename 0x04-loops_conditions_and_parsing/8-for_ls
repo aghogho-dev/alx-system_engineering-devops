@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# use for loop, cut, pipe, cat, ls, echo
+
+for i in `ls | cat | cut -d - -f 2`
+do
+  echo $i
+done
