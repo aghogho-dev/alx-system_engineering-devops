@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Change your home IP
+
+cp /etc/hosts /etc/hosts.bak
+
+echo "127.0.0.2 localhost" >> /etc/hosts.bak
+echo "8.8.8.8 facebook.com" >> /etc/hosts.bak
+
+cp -f /etc/hosts.bak /etc/hosts
