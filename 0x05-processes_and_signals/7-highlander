@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Kills a process
+
+function finish {
+	echo "I am invincible!!!"
+}
+
+trap finish SIGTERM
+
+while true
+do
+  echo "To infinity and beyond"
+  sleep 2
+done
