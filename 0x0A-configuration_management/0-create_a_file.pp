@@ -6,5 +6,5 @@ file { 'school':
   group   => 'www-data',
   mode    => '0744',
   owner   => 'www-data',
-  path    => 'tmp/school',
+  path    => '/tmp/school',
 }
