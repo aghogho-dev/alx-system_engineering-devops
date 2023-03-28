@@ -5,18 +5,18 @@
 apt-get update
 apt-get install -y nginx
 
-# Directory and file
+# Create dir and file
 mkdir /etc/nginx/html
 touch /etc/nginx/html/index.html
-echo "Hello World!" > /etc/nginx/html/index.html
+echo "Holberton School" > /etc/nginx/html/index.html
 
 # Configure nginx
 printf %s "server {
-  listen 80 default_server;
-  listen [::]:80 default_server;
-  root   /etc/nginx/html;
-  index  index.html index.htm;
-  }" >  /etc/nginx/site-available/default
+     listen      80 default_server;
+     listen      [::]:80 default_server;
+     root        /etc/nginx/html;
+     index       index.html index.htm;
+}" > /etc/nginx/sites-available/default
 
-# Restart nginx
+# restart nginx
 service nginx restart
