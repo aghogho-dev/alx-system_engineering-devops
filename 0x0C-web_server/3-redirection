@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Install nginx web server
+
+# Install nginx
+apt-get update
+apt-get install -y nginx
+
+# Create dir
+mkdir /etc/nginx/html
+
+# Configure nginx
+printf %s "server {
+     listen      80 default_server;
+     listen      [::]:80 default_server;
+     root        /etc/nginx/html;
+     index       index.html index.htm;
+     location /redirect_me {
+	return 301 google.com';
+     }
+}" > /etc/nginx/sites-available/default
+
+# restart nginx
+service nginx restart
