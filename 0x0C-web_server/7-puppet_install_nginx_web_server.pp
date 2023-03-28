@@ -10,7 +10,7 @@ class nginx {
 
   file { '/etc/nginx/html/index.html':
     content => "Hello World!\n",
-    mode    => '0644',
+    mode    => '0744',
     owner   => 'root',
     group   => 'root',
   }
@@ -24,7 +24,7 @@ class nginx {
                     return 301 https://www.google.com/;
                   }
                 }",
-    mode    => '0644',
+    mode    => '0744',
     owner   => 'root',
     group   => 'root',
     notify  => Service['nginx'],
