@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
+# Run Apache in docker
 echo "ServerName localhost" >> /etc/apache2.conf
-service apacha2 start
+service apache2 start
