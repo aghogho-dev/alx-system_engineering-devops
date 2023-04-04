@@ -21,7 +21,7 @@ function create_404_html() {
 }
 
 function configure_nginx() {
-    print %s "server {
+    printf %s "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 	add_header X-Served-By '$HOSTNAME';
