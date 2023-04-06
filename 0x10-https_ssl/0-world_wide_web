@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # Configure domain zone so subdomain points to load-balancer IP
 
-func () 
-{
+display_info() {
     local subdomain=$1
     local domain=$2
 
@@ -15,8 +14,14 @@ func ()
 }
 
 domain=$1
+subdomain=$2
 
-func "www" "$domain"
-func "lb-01" "$domain"
-func "web-01" "$domain"
-func "web-02" "$domain"
+if [[ -z "$subdomain" ]]; then
+    subdomains=("www" "lb-01" "web-01" "web-02")
+else
+    subdomains=("$subdomain")
+fi
+
+for subdomain in "${subdomains[@]}"; do
+    display_info "$subdomain" "$domain"
+done
