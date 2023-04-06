@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Configure domain zone so subdomain points to load-balancer IP
+
+func () 
+{
+    record_type=$(dig +short -t "$2" "$1" | awk '{print $1}')
+    destination=$(dig +short -t "$2" "$1" | awk '{print $2}')
+    echo "The subdomain $1 is a $record_type record and points to $destination"
+}
+
+if [[ "$#" == 1 ]]; then
+    func "www.$1" "A"
+    func "lb-01.$1" "A"
+    func "web-01.$1" "A"
+    func "web-02.$1" "A"
+elif [[ "$#" == 2 ]]; then
+    func "$1" "$2"
+fi
