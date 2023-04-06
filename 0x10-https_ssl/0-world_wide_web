@@ -3,16 +3,20 @@
 
 func () 
 {
-    record_type=$(dig +short -t "$2" "$1" | awk '{print $1}')
-    destination=$(dig +short -t "$2" "$1" | awk '{print $2}')
-    echo "The subdomain $1 is a $record_type record and points to $destination"
+    local subdomain=$1
+    local domain=$2
+
+    local answer=$(dig +short "$subdomain.$domain")
+
+    if [[ -n "$answer" ]]; then
+        local record_type=$(dig "$subdomain.$domain" | awk '/^;; ANSWER SECTION:/{getline;print $3}')
+        echo "The subdomain $subdomain is a $record_type record and points to $answer"
+    fi
 }
 
-if [[ "$#" == 1 ]]; then
-    func "www.$1" "A"
-    func "lb-01.$1" "A"
-    func "web-01.$1" "A"
-    func "web-02.$1" "A"
-elif [[ "$#" == 2 ]]; then
-    func "$1" "$2"
-fi
+domain=$1
+
+func "www" "$domain"
+func "lb-01" "$domain"
+func "web-01" "$domain"
+func "web-02" "$domain"
