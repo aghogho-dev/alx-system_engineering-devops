@@ -1,0 +1,2 @@
+#!/usr/bin/env basj
+sudo -u "$1" whoami
