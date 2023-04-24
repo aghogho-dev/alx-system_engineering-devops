@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""TODO REST API"""
+"""TODO REST API."""
 import json
 import sys
 import urllib.request
