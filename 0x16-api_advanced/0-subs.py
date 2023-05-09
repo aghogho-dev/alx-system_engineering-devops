@@ -1,23 +1,15 @@
 #!/usr/bin/python3
 """Get the number of subs"""
-import json
-import urllib.request
+import requests
 
 def number_of_subscribers(subreddit):
     """Get number of subscribers"""
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
     headers = {"User-Agent": "MyBot/0.0.1"}
-
-    req = urllib.request.Request(url, headers=headers)
-
-    try:
-        with urllib.request.urlopen(req) as response:
-            dt = json.loads(response.read().decode())
-            return dt['data']['subscribers']
-    except urllib.error.HTTPError as err:
-        if err.code == 404:
-            return 0
-    except KeyError:
+    res = requests.get(url, headers=headers, allow_redirects=False)
+    if res.status_code == 404:
         return 0
-        
-
+    try:
+        return res.json().get("data").get("subscribers")
+    except requests.exceptions.JSONDecodeError:
+        return 0
