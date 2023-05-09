@@ -16,3 +16,4 @@ def top_ten(subreddit):
         [print(child.get("data").get("title")) for child in results.get("children")]
     except requests.exceptions.JSONDecodeError:
         print(None)
+    return
