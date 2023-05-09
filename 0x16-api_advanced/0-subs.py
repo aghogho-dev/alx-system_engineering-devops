@@ -14,6 +14,10 @@ def number_of_subscribers(subreddit):
         with urllib.request.urlopen(req) as response:
             dt = json.loads(response.read().decode())
             return dt['data']['subscribers']
-    except Exception:
+    except urllib.error.HTTPError as err:
+        if err.code == 404:
+            return 0
+    except KeyError:
         return 0
+        
 
